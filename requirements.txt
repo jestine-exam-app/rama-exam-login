@@ -1,2 +1,2 @@
-# Example requirement
-flask
+Flask
+gunicorn
