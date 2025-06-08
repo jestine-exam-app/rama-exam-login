@@ -1,2 +1,2 @@
 # Rama Exam System
-Instructions for deploying this system on GitHub Pages.
+Upload all files to GitHub Pages or use locally.
