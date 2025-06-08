@@ -1,2 +1,2 @@
-# Rama Exam System Deployment
-Instructions for deployment.
+# Rama Exam System
+Instructions for deploying this system on GitHub Pages.
