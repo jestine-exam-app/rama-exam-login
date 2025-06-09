@@ -1,1 +1,29 @@
-<!DOCTYPE html><html><head><title>Login</title></head><body><h1>Login Page</h1><form action='dashboard.html'><input type='text'><input type='password'><button>Login</button></form></body></html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RAMA SDA JUNIOR SCHOOL - Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="School Logo" height="80">
+        <h1>RAMA SDA JUNIOR SCHOOL</h1>
+        <p><em>IN GOD WE CAN</em></p>
+    </header>
+    <main>
+        <h2>Login</h2>
+        <form action="dashboard.html" method="get">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br><br>
+            <label for="role">Role:</label><br>
+            <select id="role" name="role">
+                <option value="teacher">Teacher</option>
+                <option value="admin">Admin</option>
+            </select><br><br>
+            <button type="submit">Login</button>
+        </form>
+    </main>
+</body>
+</html>
