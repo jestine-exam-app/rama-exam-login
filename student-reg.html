@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>Student Registration</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="header"><h1>Register Students</h1></div>
+<div class="container">
+  <form id="studentForm">
+    <input type="text" id="assessNo" placeholder="Assessment No" required />
+    <input type="text" id="name" placeholder="Full Name" required />
+    <select id="gender"><option value="M">M</option><option value="F">F</option></select>
+    <select id="grade"><option value="7">Grade 7</option><option value="8">Grade 8</option><option value="9">Grade 9</option></select>
+    <button type="submit">Add Student</button>
+  </form>
+  <h3>Registered Students</h3>
+  <ul id="studentList"></ul>
+</div>
+<script>
+  const form = document.getElementById('studentForm');
+  const list = document.getElementById('studentList');
+  const students = JSON.parse(localStorage.getItem('students') || '[]');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const student = {
+      assessNo: form.assessNo.value,
+      name: form.name.value,
+      gender: form.gender.value,
+      grade: form.grade.value
+    };
+    students.push(student);
+    localStorage.setItem('students', JSON.stringify(students));
+    form.reset();
+    renderList();
+  });
+
+  function renderList() {
+    list.innerHTML = students.map(s =>
+      `<li>${s.assessNo} - ${s.name} (${s.gender}) - Grade ${s.grade}</li>`
+    ).join('');
+  }
+
+  renderList();
+</script>
+</body>
+</html>

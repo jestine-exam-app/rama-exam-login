@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Export & Backup</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function exportData(key, filename) {
+      const data = localStorage.getItem(key);
+      if (!data) return alert('No data to export.');
+      const blob = new Blob([data], {type: 'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function importData(key, fileInput) {
+      const file = fileInput.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          JSON.parse(reader.result); // validate
+          localStorage.setItem(key, reader.result);
+          alert('Data imported successfully!');
+        } catch (e) {
+          alert('Invalid JSON format.');
+        }
+      };
+      reader.readAsText(file);
+    }
+  </script>
+</head>
+<body>
+  <div class="header"><h1>Export & Backup Tools</h1></div>
+  <div class="container">
+    <h2>Export</h2>
+    <button onclick="exportData('students','students_backup.json')">Download Students</button>
+    <button onclick="exportData('marks','marks_backup.json')">Download Marks</button>
+
+    <h2>Import</h2>
+    <label>Upload Students JSON:
+      <input type="file" onchange="importData('students', this)">
+    </label><br>
+    <label>Upload Marks JSON:
+      <input type="file" onchange="importData('marks', this)">
+    </label>
+  </div>
+</body>
+</html>
