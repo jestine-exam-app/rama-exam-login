@@ -1,82 +1,23 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dynamic Report Card</title>
+  <title>Report Card</title>
   <link rel="stylesheet" href="style.css">
-  <script>
-    function loadReport() {
-      const studentData = JSON.parse(localStorage.getItem('students')) || [];
-      const marksData = JSON.parse(localStorage.getItem('marks')) || [];
-
-      const adm = prompt("Enter Assessment No (e.g. A0045):");
-      const student = studentData.find(s => s.assessNo === adm);
-      if (!student) return alert("Student not found");
-
-      document.getElementById('studentName').textContent = student.name;
-      document.getElementById('studentADM').textContent = student.assessNo;
-      document.getElementById('studentGender').textContent = student.gender;
-      document.getElementById('studentGrade').textContent = student.grade;
-
-      const tableBody = document.getElementById('marksBody');
-      tableBody.innerHTML = '';
-      let total = 0;
-      let count = 0;
-
-      marksData.filter(m => m.assessNo === adm).forEach(entry => {
-        const avg = (Number(entry.midterm) + Number(entry.endterm)) / 2;
-        const deviation = Number(entry.endterm) - Number(entry.midterm);
-        const pl = avg >= 80 ? 'EE' : avg >= 60 ? 'ME' : avg >= 40 ? 'AE' : 'BE';
-        const al = pl === 'EE' ? 'AL 4' : pl === 'ME' ? 'AL 3' : pl === 'AE' ? 'AL 2' : 'AL 1';
-
-        total += avg; count++;
-
-        const row = `<tr>
-          <td>${entry.subject}</td>
-          <td>${entry.midterm}</td>
-          <td>${entry.endterm}</td>
-          <td>${avg.toFixed(1)}</td>
-          <td>${pl}</td>
-          <td>${al}</td>
-          <td>${deviation > 0 ? '+' : ''}${deviation}</td>
-        </tr>`;
-        tableBody.innerHTML += row;
-      });
-
-      const avgTotal = count ? (total / count).toFixed(2) : 0;
-      document.getElementById('totalPoints').textContent = total.toFixed(1);
-      document.getElementById('avgMarks').textContent = avgTotal;
-      document.getElementById('position').textContent = "Pending"; // Placeholder
-    }
-
-    function printReport() {
-      window.print();
-    }
-
-    window.onload = loadReport;
-  </script>
 </head>
 <body>
-  <div class="header">
-    <h1>RAMA SDA JUNIOR SCHOOL</h1>
-    <p>IN GOD WE CAN</p>
-    <h2>Student Report Card</h2>
-  </div>
-  <div class="container">
-    <p><strong>Name:</strong> <span id="studentName"></span></p>
-    <p><strong>ADM No:</strong> <span id="studentADM"></span></p>
-    <p><strong>Grade:</strong> <span id="studentGrade"></span></p>
-    <p><strong>Gender:</strong> <span id="studentGender"></span></p>
-    <table>
-      <thead>
-        <tr><th>Subject</th><th>Midterm</th><th>Endterm</th><th>Average</th><th>PL</th><th>AL</th><th>Deviation</th></tr>
-      </thead>
-      <tbody id="marksBody"></tbody>
+  <h2>Generate Report</h2>
+  <input type="text" id="search" placeholder="Assessment Number or Name">
+  <button onclick="alert('Generating report')">Search</button>
+  <div id="report">
+    <table border="1">
+      <tr><th>Subject</th><th>Mark</th></tr>
+      <tr><td>Math</td><td>84</td></tr>
+      <tr><td>English</td><td>76</td></tr>
     </table>
-    <p><strong>Total Points:</strong> <span id="totalPoints"></span></p>
-    <p><strong>Average:</strong> <span id="avgMarks"></span></p>
-    <p><strong>Position:</strong> <span id="position"></span></p>
-    <button onclick="printReport()">Download as PDF</button>
+    <p>Total: 160</p>
+    <p>Average: 80</p>
+    <p>PL: EE</p>
+    <p>AL: Exceeds Expectations</p>
   </div>
 </body>
 </html>

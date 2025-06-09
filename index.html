@@ -1,37 +1,21 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rama Exam Login</title>
+  <meta charset="UTF-8">
+  <title>RAMA SDA JUNIOR SCHOOL - Login</title>
   <link rel="stylesheet" href="style.css">
-  <script>
-    function login(event) {
-      event.preventDefault();
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      if (username === 'admin' && password === '1234') {
-        location.href = 'dashboard.html';
-      } else if (username === 'science' && password === 'science123') {
-        location.href = 'marks-entry.html';
-      } else {
-        alert('Invalid login');
-      }
-    }
-  </script>
 </head>
 <body>
   <div class="header">
-    <img src="logo.png" height="60" />
-    <h1>RAMA SDA JUNIOR SCHOOL</h1>
-    <p>IN GOD WE CAN</p>
+    <img src="logo.png" alt="Logo" class="logo">
+    <h1 class="title">RAMA SDA JUNIOR SCHOOL</h1>
+    <p class="subtitle">IN GOD WE CAN</p>
   </div>
   <div class="login-box">
     <h2>Login</h2>
-    <form onsubmit="login(event)">
-      <input type="text" id="username" placeholder="Username" required><br>
-      <input type="password" id="password" placeholder="Password" required><br>
-      <button type="submit">Login</button>
-    </form>
+    <input type="email" placeholder="Email" id="email">
+    <input type="password" placeholder="Password" id="password">
+    <button onclick="alert('Simulated login')">Login</button>
   </div>
 </body>
 </html>

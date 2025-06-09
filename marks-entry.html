@@ -1,8 +1,19 @@
-
-body { font-family: Arial; margin: 0; background: #f0f0f0; }
-.header { background: green; color: white; text-align: center; padding: 15px; }
-.container { background: white; padding: 20px; margin: 20px auto; width: 80%; box-shadow: 0 0 5px #aaa; }
-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-button { margin-top: 20px; padding: 10px 20px; }
-@media print { button { display: none; } }
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enter Marks - Teacher Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Marks Entry</h2>
+  <label>Grade: <input type="text" id="grade"></label>
+  <label>Subject: <input type="text" id="subject"></label>
+  <label>Term: <input type="text" id="term"></label>
+  <button onclick="alert('Load Students')">Load Students</button>
+  <div id="students">
+    <p><strong>Student A001:</strong> <input type="text" placeholder="Enter mark"></p>
+    <p><strong>Student A002:</strong> <input type="text" placeholder="Enter mark"></p>
+    <button onclick="alert('Marks Saved')">Save Marks</button>
+  </div>
+</body>
+</html>
